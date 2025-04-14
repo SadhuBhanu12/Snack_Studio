@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snack Studio - Vegetarian Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #ff8c00;
+            --secondary-color: #ffa500;
+            --text-color: #333;
+            --white: #fff;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-button {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 25px;
+            background: rgba(255, 140, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+            color: var(--primary-color);
+        }
+
+        .menu-container {
+            padding: 20px 10px;
+        }
+
+        .menu-category {
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover .item-image {
+            transform: scale(1.03);
+        }
+
+        .item-content {
+            padding: 12px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .item-name {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: 600;
+            flex: 1;
+            margin-right: 8px;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        .item-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 6px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            margin-right: 6px;
+        }
+
+        .veg {
+            background: #e6ffe6;
+            color: #008000;
+        }
+
+        @media (max-width: 768px) {
+            .menu-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 10px;
+            }
+
+            .item-image {
+                height: 120px;
+            }
+
+            .item-content {
+                padding: 8px;
+            }
+
+            .item-name {
+                font-size: 0.9rem;
+            }
+
+            .item-price {
+                font-size: 1rem;
+            }
+
+            .item-description {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <header class="container">
+            <div class="header-content">
+                <a href="index.html" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+                <div class="logo">SNACK STUDIO</div>
+            </div>
+        </header>
+    </div>
+
+    <div class="container">
+        <div class="menu-container">
+            <div class="menu-category">
+                <h2 class="category-title">
+                    Vegetarian Menu
+                    <span class="category-count">8 items</span>
+                </h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=600" alt="Cheese Corn Nuggets" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-cheese item-icon"></i>
+                                    Cheese Corn Nuggets
+                                </span>
+                                <span class="item-price">₹80</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Crispy nuggets filled with sweet corn and melted cheese</div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600" alt="Veg Momos" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-utensils item-icon"></i>
+                                    Veg Momos
+                                </span>
+                                <span class="item-price">₹80</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Steamed dumplings with spiced vegetable filling</div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600" alt="Paneer Momos" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-utensils item-icon"></i>
+                                    Paneer Momos
+                                </span>
+                                <span class="item-price">₹90</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Steamed dumplings with spiced cottage cheese filling</div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600" alt="French Fries" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-french-fries item-icon"></i>
+                                    French Fries (Classic)
+                                </span>
+                                <span class="item-price">₹80</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Crispy golden fries with classic seasoning</div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1576107232684-1279f390859f?w=600" alt="Peri Peri Fries" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-pepper-hot item-icon"></i>
+                                    French Fries (Peri Peri)
+                                </span>
+                                <span class="item-price">₹90</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Crispy fries tossed in spicy peri peri seasoning</div>
+                        </div>
+                    </div>
+
+                    <div class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1550317138-10000687a72b?w=600" alt="Paneer Plaita" class="item-image">
+                        <div class="item-content">
+                            <div class="item-header">
+                                <span class="item-name">
+                                    <i class="fas fa-burger item-icon"></i>
+                                    Paneer Plaita Burger
+                                </span>
+                                <span class="item-price">₹50</span>
+                            </div>
+                            <span class="badge veg">Veg</span>
+                            <div class="item-description">Grilled paneer patty in a soft bun, served with rich curry sauce, fresh lettuce, onions, and melted cheese</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
